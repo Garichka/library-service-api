@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "user",
     "book",
     "borrowing",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -125,9 +126,17 @@ STATIC_URL = "static/"
 from datetime import timedelta
 
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Library Service API",
+    "DESCRIPTION": "API for managing book borrowing in a library",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
 
 SIMPLE_JWT = {
